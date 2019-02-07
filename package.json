@@ -1,0 +1,62 @@
+{
+  "name": "luminave-server",
+  "version": "1.0.0",
+  "description": "Provide an API for the luminave frontend and everything that wants to use luminave",
+  "main": "src/index.js",
+  "scripts": {
+    "build": "webpack --config webpack.node.config.js",
+    "start": "npm-run-all --parallel watch:server watch:build",
+    "watch:build": "webpack --config webpack.node.config.js --watch",
+    "watch:server": "nodemon --inspect=\"9230\" \"./build/bundle.js\" --watch \"./build\" ",
+    "test": "jest",
+    "clean": "rimraf umd docs/*.js docs/*.map",
+    "jsdoc": "jsdoc2md --heading-depth 2 --partial .github/scope.hbs --template .github/API_template.md --files server.js > docs/API.md",
+    "toc": "markdown-toc -i README.md",
+    "semantic-release": "semantic-release",
+    "travis-deploy-once": "travis-deploy-once"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NERDDISCO/luminave-server.git"
+  },
+  "keywords": [
+    "luminave",
+    "server",
+    "graphql",
+    "api"
+  ],
+  "author": "Tim Pietrusky",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/NERDDISCO/luminave-server/issues"
+  },
+  "homepage": "https://github.com/NERDDISCO/luminave-server#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.1.5",
+    "@babel/core": "^7.1.6",
+    "@semantic-release/changelog": "^2.0.2",
+    "@semantic-release/git": "^4.0.3",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-jest": "^23.4.2",
+    "babel-loader": "^8.0.4",
+    "cross-env": "^5.1.4",
+    "eslint": "^4.19.1",
+    "graphql-tools": "^4.0.3",
+    "jest": "^23.6.0",
+    "jsdoc-to-markdown": "^4.0.1",
+    "markdown-toc": "^1.2.0",
+    "nodemon": "^1.18.7",
+    "npm-run-all": "^4.1.5",
+    "rimraf": "^2.6.2",
+    "semantic-release": "^15.1.7",
+    "travis-deploy-once": "^5.0.0",
+    "webpack": "^4.26.1",
+    "webpack-cli": "^3.1.2",
+    "webpack-node-externals": "^1.7.2"
+  },
+  "dependencies": {
+    "apollo-server": "^2.3.1",
+    "graphql": "^14.0.2",
+    "graphql-subscriptions": "^1.0.0"
+  }
+}
