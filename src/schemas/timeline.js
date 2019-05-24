@@ -4,6 +4,7 @@ export const pubsub = new PubSub()
 
 import { GraphQLScalarType } from 'graphql'
 import Kind from 'graphql/language'
+import config from '../config.js'
 
 const ObjectScalarType = new GraphQLScalarType({
   name: 'Object',
@@ -92,7 +93,10 @@ export const resolvers = {
     setTimelineScenes: (_, { scenes }) => {
       _scenes = scenes
       pubsub.publish('scenesUpdated', _scenes)
-      console.log('setTimelineScenes', _scenes)
+
+      if (config.env === 'development') {
+        console.log('setTimelineScenes', _scenes)
+      }
 
       return _scenes
     },
@@ -100,7 +104,10 @@ export const resolvers = {
     setAnimation: (_, { animation }) => {
       _animation = animation
       pubsub.publish('animationUpdated', _animation)
-      console.log('setAnimation', _animation)
+
+      if (config.env === 'development') {
+        console.log('setAnimation', _animation)
+      }
 
       return _animation
     }

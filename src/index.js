@@ -1,18 +1,5 @@
 import { ApolloServer, makeExecutableSchema } from 'apollo-server'
-import dotenv from 'dotenv'
-
-// Parse the .env file
-dotenv.config()
-
-/**
- * Host of the luminave-server
- */
-const host = process.env.HOST || 'localhost'
-
-/**
- * Port of the luminave-server
- */
-const port = process.env.PORT || 4000
+import config from './config.js'
 
 import { 
   schema as timelineSchema,
@@ -30,6 +17,8 @@ const server = new ApolloServer({
   schema, 
   debug: true 
 })
+
+const { host, port } = config
 
 // Start the server
 server.listen({ host, port }).then(({ url }) => {
