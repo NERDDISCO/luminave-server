@@ -34,9 +34,9 @@ export const schema = gql`
 
   input AnimationInput {
     """ID of the animation that is created by an external system (e.g. Thorium)"""
-    externalId: String
-    dimmer: Int
-    duration: Int 
+    externalId: String!
+    dimmer: Int!
+    duration: Int!
     color: [Int]
     action: String
     actionStrength: Float
